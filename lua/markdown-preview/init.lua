@@ -85,15 +85,14 @@ function M.stop_preview()
   print("Markdown preview вимкнено.")
 end
 
-return M
-
-
 local md_preview = require("markdown-preview")
 
-vim.api.nvim_create_user_command("PreviewMarkdown", function()
+vim.api.nvim_create_user_command("MarkdownPreview", function()
   md_preview.start_preview()
 end, {})
 
-vim.api.nvim_create_user_command("PreviewMarkdownStop", function()
+vim.api.nvim_create_user_command("MarkdownPreviewStop", function()
   md_preview.stop_preview()
 end, {})
+
+return M
