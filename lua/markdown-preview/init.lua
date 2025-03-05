@@ -19,7 +19,6 @@ function M.update_preview()
 		return
 	end
 	local output_file = render_markdown()
-	print("Preview оновлено: " .. output_file)
 end
 
 -- Функція запуску режиму preview
@@ -36,18 +35,17 @@ function M.start_preview()
 
 	-- Запускаємо browser-sync, якщо ще не запущено
 	if not M.bs_job_id then
-		local dir = vim.fn.fnamemodify(output_file, ":h")
-
 		M.bs_job_id = vim.fn.jobstart({
 			"browser-sync",
 			"start",
 			"--server",
-			dir,
+			vim.fn.fnamemodify(output_file, ":h"),
 			"--index",
 			vim.fn.fnamemodify(output_file, ":t"),
 			"--files",
 			output_file,
-			"--open",
+			"--browser",
+			"Google Chrome",
 			"--middleware",
 			[[function (req, res, next) {
       res.setHeader('Content-Security-Policy',
