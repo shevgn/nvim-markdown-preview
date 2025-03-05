@@ -37,7 +37,7 @@ function M.start_preview()
 	-- Запускаємо browser-sync, якщо ще не запущено
 	if not M.bs_job_id then
 		M.bs_job_id = vim.fn.jobstart(
-			{ "browser-sync", "start", "--server", "--files", output_file },
+			{ "browser-sync", "start", "--config", "bs-config.js", "--server", "--files", output_file },
 			{ detach = true }
 		)
 		if M.bs_job_id <= 0 then
